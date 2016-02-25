@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mailer</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body style="text-align:center;">
+<div class="message"> <%= flash_messages %></div>
+<% if user_signed_in? %>
+<%= current_user.email %>
+<%= link_to 'Edit profile', edit_user_registration_path %>
+<%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "S'inscrire", new_user_registration_path %>
+<%= link_to "Se connecter", new_user_session_path %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
